@@ -6,12 +6,18 @@
 /*   By: jschott <jschott@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:22:29 by jschott           #+#    #+#             */
-/*   Updated: 2023/12/11 15:27:39 by jschott          ###   ########.fr       */
+/*   Updated: 2024/08/08 11:45:35 by jschott          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/**
+ * Destroys philosopher structures and frees allocated resources.
+ * 
+ * @param phlsphrs A pointer to an array of philosopher structures.
+ * @param num The number of philosophers in the array.
+ */
 void	philo_destroy(t_philo **phlsphrs, long num)
 {
 	int	i;
@@ -24,6 +30,15 @@ void	philo_destroy(t_philo **phlsphrs, long num)
 	}
 	free (phlsphrs);
 }
+
+/**
+ * Creates and initializes a philosopher structure.
+ * 
+ * @param num The philosopher's number (position at the table).
+ * @param table A pointer to the shared table structure.
+ * @param ctlry An array of mutexes representing the forks.
+ * @return A pointer to the newly created philosopher structure.
+ */
 
 t_philo	*create_philo(long num, t_table *table, pthread_mutex_t *ctlry)
 {
@@ -49,6 +64,14 @@ t_philo	*create_philo(long num, t_table *table, pthread_mutex_t *ctlry)
 	return (phlsphr);
 }
 
+/**
+ * Initializes an array of philosopher structures.
+ * 
+ * @param num The number of philosophers to initialize.
+ * @param table A pointer to the shared table structure.
+ * @param ctlry An array of mutexes representing the forks.
+ * @return A pointer to the array of philosopher structures.
+ */
 t_philo	**philo_init(long num, t_table *table, pthread_mutex_t *ctlry)
 {
 	t_philo		**phlsphrs;

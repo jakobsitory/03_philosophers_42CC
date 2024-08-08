@@ -6,12 +6,18 @@
 /*   By: jschott <jschott@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 10:45:11 by jschott           #+#    #+#             */
-/*   Updated: 2023/12/11 15:54:42 by jschott          ###   ########.fr       */
+/*   Updated: 2024/08/08 11:43:18 by jschott          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/**
+ * Handles error messages based on error codes and exits the program.
+ * 
+ * @param err_cd The error code indicating the type of error encountered.
+ * @return This function does not return a value because it calls `exit` with the error code.
+ */
 void	error_mgmt(int err_cd)
 {
 	if (err_cd == ERR_ARGC)
@@ -35,6 +41,13 @@ void	error_mgmt(int err_cd)
 	exit (err_cd);
 }
 
+/**
+ * Prints a status message for a philosopher's action.
+ * 
+ * @param event A string describing the philosopher's current event or action.
+ * @param philo A pointer to a `t_philo` structure representing the philosopher.
+ * @return This function does not return a value.
+ */
 void	status_mssg(char *event, t_philo *philo)
 {
 	long			time;

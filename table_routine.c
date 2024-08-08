@@ -12,6 +12,12 @@
 
 #include "philo.h"
 
+/**
+ * Determines if a philosopher has died based on the current time and their time of death.
+ * 
+ * @param philo A pointer to a `t_philo` structure representing the philosopher to check.
+ * @return Returns 1 if the philosopher has died, 0 otherwise.
+ */
 int	philo_died(t_philo *philo)
 {
 	if (gettime() - *philo->time_of_death < 0)
@@ -19,6 +25,13 @@ int	philo_died(t_philo *philo)
 	return (1);
 }
 
+/**
+ * Updates the death count of philosophers at the table.
+ * 
+ * @param table A pointer to a `t_table` structure representing the dining table.
+ * @param phlsphr A pointer to a `t_philo` structure representing the philosopher to check.
+ * @return Returns the death count (1 if the philosopher has died, 0 otherwise).
+ */
 int	update_death_count(t_table *table, t_philo *phlsphr)
 {
 	int	death_count;
@@ -35,6 +48,12 @@ int	update_death_count(t_table *table, t_philo *phlsphr)
 	return (death_count);
 }
 
+/**
+ * Checks if a philosopher has been fully fed.
+ * 
+ * @param phlsphr A pointer to a `t_philo` structure representing the philosopher to check.
+ * @return Returns the number of meals left for the philosopher.
+ */
 int	philo_fed(t_philo *phlsphr)
 {
 	long int	meals_left;
@@ -45,6 +64,16 @@ int	philo_fed(t_philo *phlsphr)
 	return (meals_left);
 }
 
+/**
+ * Simulates the routine of the dining table, checking for philosopher deaths and meal completion.
+ * 
+ * This function represents the main loop of the dining table simulation. It periodically checks if any philosopher
+ * has died or if all philosophers have been fully fed. The simulation ends when either all philosophers are dead
+ * or fully fed.
+ * 
+ * @param arg A void pointer to a `t_table` structure representing the dining table.
+ * @return Always returns 0. This return value is used to comply with the pthreads function signature.
+ */
 void	*table_routine(void *arg)
 {
 	int		i;

@@ -6,12 +6,18 @@
 /*   By: jschott <jschott@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 10:44:32 by jschott           #+#    #+#             */
-/*   Updated: 2023/12/11 14:44:00 by jschott          ###   ########.fr       */
+/*   Updated: 2024/08/08 11:46:29 by jschott          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/**
+ * Counts the number of valid numeric strings in an array.
+ * 
+ * @param argv An array of strings to be checked.
+ * @return The number of valid numeric strings in the array, or 0 if any string is invalid.
+ */
 int	num_str(char **argv)
 {
 	int	i;
@@ -35,6 +41,12 @@ int	num_str(char **argv)
 	return (i);
 }
 
+/**
+ * Sets up and starts the dining philosophers simulation.
+ * 
+ * @param table A pointer to the `t_table` structure representing the dining table.
+ * @return Returns 1 on successful setup and start of the simulation.
+ */
 int	table_set(t_table *table)
 {
 	pthread_t	*table_thrd;
@@ -54,6 +66,18 @@ int	table_set(t_table *table)
 	return (1);
 }
 
+/**
+ * The main entry point of the dining philosophers simulation program.
+ * 
+ * This function performs initial checks on the command line arguments to ensure they are valid and represent a correct
+ * number of philosophers. It then initializes the dining table structure and forks (mutexes) for the simulation. It
+ * creates and initializes philosopher structures, starts the dining simulation, and finally cleans up all allocated
+ * resources. If any step fails, it calls `error_mgmt` with an appropriate error code and exits the program.
+ * 
+ * @param argc The number of command line arguments.
+ * @param argv An array of strings representing the command line arguments.
+ * @return Returns `EXIT_SUCCESS` on successful completion of the simulation or `EXIT_FAILURE` on error.
+ */
 int	main(int argc, char **argv)
 {
 	t_table			*table;

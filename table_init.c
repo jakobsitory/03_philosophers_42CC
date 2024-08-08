@@ -6,12 +6,18 @@
 /*   By: jschott <jschott@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 10:36:27 by jschott           #+#    #+#             */
-/*   Updated: 2023/12/11 14:45:37 by jschott          ###   ########.fr       */
+/*   Updated: 2024/08/08 11:42:30 by jschott          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/**
+ * Destroys a dining table structure and frees allocated resources.
+ * 
+ * @param table A pointer to the `t_table` structure to be destroyed.
+ * @return Returns `EXIT_SUCCESS` on successful cleanup and `EXIT_FAILURE` if the `table` pointer is NULL.
+ */
 int	table_destroy(t_table *table)
 {
 	if (!table)
@@ -22,6 +28,24 @@ int	table_destroy(t_table *table)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * Initializes a dining table structure with parameters provided via command line arguments.
+ * 
+ * This function sets up a `t_table` structure using command line arguments. It checks for the validity of the `table`
+ * and `argv` pointers. If either is NULL, it returns `ERR_INPT` to indicate an input error. The function then
+ * initializes the dining table's parameters such as the number of philosophers, time to die, time to eat, time to
+ * sleep, and optionally, the number of meals each philosopher must eat before the simulation can end.
+ * 
+ * If any of the parameters are invalid (e.g., negative values or a zero philosopher count when an optional meals
+ * parameter is provided), it frees the allocated `table` and calls `error_mgmt` with `ERR_INPT`.
+ * 
+ * The function also initializes a mutex for synchronizing access to shared resources and allocates memory for an
+ * array to keep track of each philosopher's time to die.
+ * 
+ * @param table A pointer to the `t_table` structure to be initialized.
+ * @param argv An array of strings containing the command line arguments.
+ * @return Returns `EXIT_SUCCESS` on successful initialization or `EXIT_FAILURE`/`ERR_INPT` on error.
+ */
 int	table_init(t_table *table, char **argv)
 {
 	if (!table || !argv)

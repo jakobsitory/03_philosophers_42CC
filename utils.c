@@ -6,12 +6,21 @@
 /*   By: jschott <jschott@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:04:52 by jschott           #+#    #+#             */
-/*   Updated: 2023/10/24 13:20:54 by jschott          ###   ########.fr       */
+/*   Updated: 2024/08/08 11:40:50 by jschott          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/**
+ * Prints the details of the dining table to standard output.
+ * 
+ * Note: This function uses `exit` to terminate the program if the `table` pointer is NULL, indicating a critical
+ * error where the simulation cannot proceed without a valid table configuration.
+ * 
+ * @param table A pointer to a `t_table` structure containing the dining table's details.
+ * @return This function does not return a value.
+ */
 void	print_table(t_table *table)
 {
 	if (!table)
@@ -22,6 +31,12 @@ void	print_table(t_table *table)
 			table->philo_t2e, table->philo_t2s);
 }
 
+/**
+ * Prints the details of a philosopher to standard output.
+ * 
+ * @param phlsphr A pointer to a `t_philo` structure containing a philosopher's details.
+ * @return This function does not return a value.
+ */
 void	print_philo(t_philo *phlsphr)
 {
 	printf("PHILOSOPHER\n");
